@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Enrollment Form</title>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://login2explore.com/jpdb/resources/js/jpdb-commons.js"></script>
+
+  <style>
+    :root {
+      --background: #f8fafc; --card-bg: #ffffff; --text-main: #0f172a; 
+      --text-muted: #64748b; --border-color: #e2e8f0; --ring-color: #3b82f6;
+      --save-btn: #2563eb; --save-btn-hover: #1d4ed8;
+      --update-btn: #059669; --update-btn-hover: #047857;
+      --reset-btn: #f1f5f9; --reset-text: #334155; --reset-hover: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--background); display: flex; justify-content: center;
+      align-items: center; min-height: 100vh; padding: 20px;
+    }
+    .form-card {
+      width: 100%; max-width: 600px; background: var(--card-bg); padding: 32px;
+      border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      border: 1px solid var(--border-color);
+    }
+    .header { margin-bottom: 24px; text-align: center; }
+    .header h2 { font-size: 24px; font-weight: 700; color: var(--text-main); }
+    .header p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group h3 { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; }
+    .input-wrapper { position: relative; width: 100%; }
+    .custom-input {
+      width: 100%; height: 48px; padding: 0 16px;
+      background: transparent; border: 1px solid var(--border-color);
+      border-radius: 12px; font-size: 15px; color: var(--text-main); outline: none;
+    }
+    .custom-input:focus { border-color: var(--ring-color); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+    .custom-input:disabled { background-color: #f8fafc; color: #94a3b8; cursor: not-allowed; }
+    .details-row { display: flex; flex-direction: column; gap: 16px; }
+    @media (min-width: 500px) { .details-row { flex-direction: row; } }
+    .button-group { display: flex; gap: 12px; margin-top: 32px; }
+    .action-btn {
+      flex: 1; height: 48px; border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+    }
+    .action-btn:active:not(:disabled) { transform: scale(0.97); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-save { background-color: var(--save-btn); color: white; }
+    .btn-save:hover:not(:disabled) { background-color: var(--save-btn-hover); }
+    .btn-update { background-color: var(--update-btn); color: white; }
+    .btn-update:hover:not(:disabled) { background-color: var(--update-btn-hover); }
+    .btn-reset { background-color: var(--reset-btn); color: var(--reset-text); }
+    .btn-reset:hover:not(:disabled) { background-color: var(--reset-hover); }
+  </style>
+</head>
+<body>
+
+  <div class="form-card">
+    <div class="header">
+      <h2>Student Enrollment</h2>
+      <p>Enter Roll Number to retrieve or save records.</p>
+    </div>
+
+    <form id="studentForm">
+      
+      <div class="form-group">
+        <h3>Roll Number</h3>
+        <div class="input-wrapper">
+          <input type="text" class="custom-input" id="rollNo" placeholder="Enter Roll Number" onblur="getStudent()">
+        </div>
+      </div>
+
+      <div class="form-group details-row">
+        <div class="input-wrapper" style="flex: 2;">
+          <input type="text" class="custom-input" id="fullName" placeholder="Full Name">
+        </div>
+        <div class="input-wrapper" style="flex: 1;">
+          <input type="text" class="custom-input" id="studentClass" placeholder="Class">
+        </div>
+      </div>
+
+      <div class="form-group details-row">
+        <div style="flex: 1;">
+          <h3>Birth Date</h3>
+          <div class="input-wrapper">
+            <input type="date" class="custom-input" id="birthDate">
+          </div>
+        </div>
+        <div style="flex: 1;">
+          <h3>Enrollment Date</h3>
+          <div class="input-wrapper">
+            <input type="date" class="custom-input" id="enrollmentDate">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h3>Address</h3>
+        <div class="input-wrapper">
+          <input type="text" class="custom-input" id="address" placeholder="Full Address">
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" id="saveBtn" class="action-btn btn-save" onclick="saveStudent()" disabled>Save</button>
+        <button type="button" id="updateBtn" class="action-btn btn-update" onclick="updateStudent()" disabled>Update</button>
+        <button type="button" id="resetBtn" class="action-btn btn-reset" onclick="resetForm()" disabled>Reset</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
