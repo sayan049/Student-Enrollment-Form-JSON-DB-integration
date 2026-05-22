@@ -121,7 +121,7 @@ function saveStudent() {
     let jsonStr = validateAndGetFormData();
     if (jsonStr === "") return;
 
-    // EDGE CASE PATCH: Disable button immediately to prevent Double-Click spam
+    // Disable button immediately to prevent Double-Click spam
     $("#saveBtn").prop("disabled", true);
 
     let putRequest = createPUTRequest(connToken, jsonStr, dbName, relName);
